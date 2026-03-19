@@ -1,0 +1,23 @@
+// ─── Pine Script: HL Brent vs WTI Spread ───────────────────────────────────
+// Замени YOUR_GITHUB_USERNAME и YOUR_REPO_NAME на свои значения
+// Символ в TV: SEED_YOURUSERNAME_TVSEEDS:BRENTOIL
+//
+// Как использовать:
+//   1. Открой любой график в TradingView
+//   2. Вставь этот скрипт в Pine Editor
+//   3. Нажми Add to chart
+// ─────────────────────────────────────────────────────────────────────────────
+
+//@version=5
+indicator("HL Brent−WTI Spread", overlay=false)
+
+// Твои символы из Pine Seeds
+brent_hl = request.security("SEED_YOUR_USERNAME_TV_SEEDS:BRENTOIL", timeframe.period, close)
+wti_hl   = request.security("SEED_YOUR_USERNAME_TV_SEEDS:CL",       timeframe.period, close)
+
+spread = brent_hl - wti_hl
+mid    = (brent_hl + wti_hl) / 2
+spread_pct = spread / mid * 100
+
+plot(spread_pct, title="Spread %", color=color.new(color.yellow, 0), linewidth=2)
+hline(0, color=color.gray, linestyle=hline.style_dashed)
