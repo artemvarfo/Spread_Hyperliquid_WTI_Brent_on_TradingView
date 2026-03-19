@@ -23,7 +23,7 @@ from github import Github
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "YOUR_GITHUB_TOKEN")
 GITHUB_REPO  = os.environ.get("GITHUB_REPO",  "YOUR_USERNAME/tv-seeds")
 INTERVAL     = "1"       # свечи в минутах (1m — минимум для Pine Seeds)
-LOOKBACK_MS  = 7 * 24 * 60 * 60 * 1000   # 7 дней истории при первом запуске
+LOOKBACK_MS  = 20 * 24 * 60 * 60 * 1000   # 7 дней истории при первом запуске
 HL_URL       = "https://api.hyperliquid.xyz/info"
 
 SYMBOLS = {
