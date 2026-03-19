@@ -1,0 +1,26 @@
+name: Update Pine Seeds
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # каждые 5 минут (минимум GitHub Actions)
+  workflow_dispatch:          # запуск вручную из интерфейса GitHub
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests PyGithub
+
+      - name: Run updater
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_REPO:  ${{ github.repository }}
+        run: python update_seeds.py
